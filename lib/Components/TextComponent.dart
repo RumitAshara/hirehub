@@ -15,7 +15,7 @@ class Textcomponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$text',
-      style: GoogleFonts.rubik(
+      style: GoogleFonts.lato(
         color: color,
         fontSize: size,
         fontWeight: weight,

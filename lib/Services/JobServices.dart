@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
@@ -77,6 +75,18 @@ class JobService {
     }
   }
 }
-
-// Global provider to access the launcher from any screen
-final urlLauncherProvider = Provider<JobService>((ref) => JobService());
+class UrlLauncherService {
+  Future<bool> launchExternalUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    try {
+      if (await canLaunchUrl(url)) {
+        return await launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+}
+final jobServiceProvider = Provider<JobService>((ref) => JobService());
+final urlLauncherProvider = Provider<UrlLauncherService>((ref) => UrlLauncherService());

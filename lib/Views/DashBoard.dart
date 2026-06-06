@@ -22,7 +22,6 @@ class DashBoard extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
-              // Automatically updates the search query provider as the user types
               onChanged: (value) => ref.read(searchQueryProvider.notifier).state = value,
               decoration: InputDecoration(
                 hintText: 'Search by title or company...',
@@ -35,14 +34,9 @@ class DashBoard extends ConsumerWidget {
               ),
             ),
           ),
-
-          // 2 & 3. Data Loading & Feed Mapping
           Expanded(
             child: jobsState.when(
-              // Loading Tracker Element
               loading: () => const Center(child: CircularProgressIndicator()),
-
-              // Error Layout Context
               error: (error, stack) => Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -58,9 +52,6 @@ class DashBoard extends ConsumerWidget {
                   ],
                 ),
               ),
-
-              // Successful Feed Layout
-              // Successful Feed Layout
               data: (jobs) {
                 if (jobs.isEmpty) {
                   return const Center(child: Textcomponent(text: 'No jobs found.',size: 16,weight: FontWeight.bold,));

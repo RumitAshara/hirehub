@@ -4,29 +4,11 @@ import 'package:simbiotik/Components/TextComponent.dart';
 import 'package:simbiotik/Services/JobServices.dart';
 import 'package:simbiotik/Themes/AppTheme.dart';
 import 'package:url_launcher/url_launcher.dart';
-// Import your Job model here
 
 class JobDetails extends ConsumerWidget {
   final Job job;
 
   const JobDetails({Key? key, required this.job}) : super(key: key);
-
-
-  Future<void> _launchApplyUrl(BuildContext context) async {
-    final Uri url = Uri.parse(job.applyUrl);
-
-    try {
-      if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-        throw Exception('Could not launch $url');
-      }
-    } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Textcomponent(text: 'Error opening link: ${e.toString()}',size: 16,weight: FontWeight.bold,)),
-        );
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
@@ -36,7 +18,6 @@ class JobDetails extends ConsumerWidget {
         title: Textcomponent(text: "Job Details", size: 24, weight: FontWeight.bold),
         elevation: 0,
       ),
-      // Action Layer: Sticky 'Apply Now' button at the bottom
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -56,7 +37,6 @@ class JobDetails extends ConsumerWidget {
             ),
           ),
         ),
-      // Content View: Naturally flowing scroll view space container
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -91,7 +71,31 @@ class JobDetails extends ConsumerWidget {
               child: Divider(),
             ),
             const SizedBox(height: 24),
-            Textcomponent(
+            const Textcomponent(
+              text : "Apply",
+              weight: FontWeight.bold,
+              size: 16,
+            ),
+            const SizedBox(height: 4),
+            InkWell(
+              onTap: ()async{
+                final launcher = ref.read(urlLauncherProvider);
+                final success = await launcher.launchExternalUrl(job.applyUrl);
+                if (!success && context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Could not open the link.')),
+                  );
+                }
+              },
+              child: Textcomponent(
+                text : job.applyUrl,
+                weight: FontWeight.bold,
+                size: 16,
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            const Textcomponent(
               text : "Description",
               weight: FontWeight.bold,
               size: 16,
