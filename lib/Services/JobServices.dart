@@ -21,18 +21,4 @@ class JobService {
     }
   }
 }
-class UrlLauncherService {
-  Future<bool> launchExternalUrl(String urlString) async {
-    final Uri url = Uri.parse(urlString);
-    try {
-      if (await canLaunchUrl(url)) {
-        return await launchUrl(url, mode: LaunchMode.externalApplication);
-      }
-      return false;
-    } catch (e) {
-      return false;
-    }
-  }
-}
 final jobServiceProvider = Provider<JobService>((ref) => JobService());
-final urlLauncherProvider = Provider<UrlLauncherService>((ref) => UrlLauncherService());
