@@ -14,7 +14,7 @@ class DashBoard extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppThemes.primarycolor,
-        title: Textcomponent(text: "HireHub", size: 24, weight: FontWeight.bold),
+        title: const Textcomponent(text: "HireHub", size: 24, weight: FontWeight.bold),
         elevation: 0,
       ),
       body: Column(

@@ -3,19 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simbiotik/Components/TextComponent.dart';
 import 'package:simbiotik/Services/JobServices.dart';
 import 'package:simbiotik/Themes/AppTheme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class JobDetails extends ConsumerWidget {
   final Job job;
 
-  const JobDetails({Key? key, required this.job}) : super(key: key);
+  const JobDetails({super.key, required this.job});
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppThemes.primarycolor,
-        title: Textcomponent(text: "Job Details", size: 24, weight: FontWeight.bold),
+        title: const Textcomponent(text: "Job Details", size: 24, weight: FontWeight.bold),
         elevation: 0,
       ),
       bottomNavigationBar: SafeArea(
