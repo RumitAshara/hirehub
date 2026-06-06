@@ -1,5 +1,7 @@
 import 'package:riverpod/riverpod.dart';
+import 'package:simbiotik/Services/JobModel.dart';
 import 'package:simbiotik/Services/JobServices.dart';
+
 final jobServiceProvider = Provider<JobService>((ref) => JobService());
 class JobsNotifier extends StateNotifier<AsyncValue<List<Job>>> {
   final JobService _service;

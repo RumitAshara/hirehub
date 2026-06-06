@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simbiotik/Components/TextComponent.dart';
+import 'package:simbiotik/Services/JobModel.dart';
 import 'package:simbiotik/Services/JobServices.dart';
 import 'package:simbiotik/Themes/AppTheme.dart';
 
