@@ -43,6 +43,7 @@ final jobsProvider = StateNotifierProvider<JobsNotifier, AsyncValue<List<Job>>>(
 // Holds the current search query string
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
+
 // Computes the filtered list automatically whenever the search query OR the job list changes
 final filteredJobsProvider = Provider<AsyncValue<List<Job>>>((ref) {
   final jobsState = ref.watch(jobsProvider);
